@@ -1,0 +1,421 @@
+,batch,ctype_ubcupdate,genotype_crct_x,genotype_crct_y,timepoint
+0,7202,Astrocyte,418,WT,5wk
+1,7202,Bergmann glia,354,WT,5wk
+2,7202,Deep cerebellar nuclei,357,WT,5wk
+3,7202,Endothelial cell,152,WT,5wk
+4,7202,GABAergic interneuron 1,454,WT,5wk
+5,7202,GABAergic interneuron 2,138,WT,5wk
+6,7202,GABAergic interneuron 3,39,WT,5wk
+7,7202,Granule cell,9005,WT,5wk
+8,7202,Microglia,46,WT,5wk
+9,7202,Oligodendrocyte,473,WT,5wk
+10,7202,Oligodendrocyte progenitor cell,63,WT,5wk
+11,7202,Pericyte,87,WT,5wk
+12,7202,Purkinje cell,74,WT,5wk
+13,7202,Unipolar brush cell,30,WT,5wk
+14,72921,Astrocyte,307,WT,5wk
+15,72921,Bergmann glia,338,WT,5wk
+16,72921,Deep cerebellar nuclei,276,WT,5wk
+17,72921,Endothelial cell,78,WT,5wk
+18,72921,GABAergic interneuron 1,403,WT,5wk
+19,72921,GABAergic interneuron 2,116,WT,5wk
+20,72921,GABAergic interneuron 3,20,WT,5wk
+21,72921,Granule cell,6863,WT,5wk
+22,72921,Microglia,39,WT,5wk
+23,72921,Oligodendrocyte,342,WT,5wk
+24,72921,Oligodendrocyte progenitor cell,49,WT,5wk
+25,72921,Pericyte,79,WT,5wk
+26,72921,Purkinje cell,64,WT,5wk
+27,72921,Unipolar brush cell,15,WT,5wk
+28,72922,Astrocyte,276,WT,5wk
+29,72922,Bergmann glia,306,WT,5wk
+30,72922,Deep cerebellar nuclei,266,WT,5wk
+31,72922,Endothelial cell,81,WT,5wk
+32,72922,GABAergic interneuron 1,452,WT,5wk
+33,72922,GABAergic interneuron 2,104,WT,5wk
+34,72922,GABAergic interneuron 3,29,WT,5wk
+35,72922,Granule cell,6554,WT,5wk
+36,72922,Microglia,36,WT,5wk
+37,72922,Oligodendrocyte,342,WT,5wk
+38,72922,Oligodendrocyte progenitor cell,50,WT,5wk
+39,72922,Pericyte,75,WT,5wk
+40,72922,Purkinje cell,78,WT,5wk
+41,72922,Unipolar brush cell,27,WT,5wk
+42,7294,Astrocyte,201,SCA1,5wk
+43,7294,Bergmann glia,224,SCA1,5wk
+44,7294,Deep cerebellar nuclei,54,SCA1,5wk
+45,7294,Endothelial cell,71,SCA1,5wk
+46,7294,GABAergic interneuron 1,389,SCA1,5wk
+47,7294,GABAergic interneuron 2,98,SCA1,5wk
+48,7294,GABAergic interneuron 3,24,SCA1,5wk
+49,7294,Granule cell,4742,SCA1,5wk
+50,7294,Microglia,17,SCA1,5wk
+51,7294,Oligodendrocyte,234,SCA1,5wk
+52,7294,Oligodendrocyte progenitor cell,25,SCA1,5wk
+53,7294,Pericyte,83,SCA1,5wk
+54,7294,Purkinje cell,69,SCA1,5wk
+55,7294,Unipolar brush cell,8,SCA1,5wk
+56,72931,Astrocyte,242,SCA1,5wk
+57,72931,Bergmann glia,319,SCA1,5wk
+58,72931,Deep cerebellar nuclei,22,SCA1,5wk
+59,72931,Endothelial cell,93,SCA1,5wk
+60,72931,GABAergic interneuron 1,354,SCA1,5wk
+61,72931,GABAergic interneuron 2,73,SCA1,5wk
+62,72931,GABAergic interneuron 3,28,SCA1,5wk
+63,72931,Granule cell,5200,SCA1,5wk
+64,72931,Microglia,22,SCA1,5wk
+65,72931,Oligodendrocyte,174,SCA1,5wk
+66,72931,Oligodendrocyte progenitor cell,18,SCA1,5wk
+67,72931,Pericyte,56,SCA1,5wk
+68,72931,Purkinje cell,61,SCA1,5wk
+69,72931,Unipolar brush cell,18,SCA1,5wk
+70,72932,Astrocyte,246,SCA1,5wk
+71,72932,Bergmann glia,341,SCA1,5wk
+72,72932,Deep cerebellar nuclei,21,SCA1,5wk
+73,72932,Endothelial cell,79,SCA1,5wk
+74,72932,GABAergic interneuron 1,343,SCA1,5wk
+75,72932,GABAergic interneuron 2,74,SCA1,5wk
+76,72932,GABAergic interneuron 3,27,SCA1,5wk
+77,72932,Granule cell,5282,SCA1,5wk
+78,72932,Microglia,14,SCA1,5wk
+79,72932,Oligodendrocyte,184,SCA1,5wk
+80,72932,Oligodendrocyte progenitor cell,22,SCA1,5wk
+81,72932,Pericyte,78,SCA1,5wk
+82,72932,Purkinje cell,72,SCA1,5wk
+83,72932,Unipolar brush cell,27,SCA1,5wk
+84,22018,Astrocyte,147,WT,12wk
+85,22018,Bergmann glia,190,WT,12wk
+86,22018,Deep cerebellar nuclei,42,WT,12wk
+87,22018,Endothelial cell,43,WT,12wk
+88,22018,GABAergic interneuron 1,269,WT,12wk
+89,22018,GABAergic interneuron 2,89,WT,12wk
+90,22018,GABAergic interneuron 3,19,WT,12wk
+91,22018,Granule cell,6578,WT,12wk
+92,22018,Microglia,23,WT,12wk
+93,22018,Oligodendrocyte,165,WT,12wk
+94,22018,Oligodendrocyte progenitor cell,24,WT,12wk
+95,22018,Pericyte,24,WT,12wk
+96,22018,Purkinje cell,49,WT,12wk
+97,22018,Unipolar brush cell,14,WT,12wk
+98,2061,Astrocyte,76,WT,12wk
+99,2061,Bergmann glia,114,WT,12wk
+100,2061,Deep cerebellar nuclei,5,WT,12wk
+101,2061,Endothelial cell,24,WT,12wk
+102,2061,GABAergic interneuron 1,168,WT,12wk
+103,2061,GABAergic interneuron 2,58,WT,12wk
+104,2061,GABAergic interneuron 3,10,WT,12wk
+105,2061,Granule cell,4023,WT,12wk
+106,2061,Microglia,10,WT,12wk
+107,2061,Oligodendrocyte,88,WT,12wk
+108,2061,Oligodendrocyte progenitor cell,8,WT,12wk
+109,2061,Pericyte,17,WT,12wk
+110,2061,Purkinje cell,24,WT,12wk
+111,2061,Unipolar brush cell,10,WT,12wk
+112,2062,Astrocyte,99,WT,12wk
+113,2062,Bergmann glia,132,WT,12wk
+114,2062,Deep cerebellar nuclei,36,WT,12wk
+115,2062,Endothelial cell,29,WT,12wk
+116,2062,GABAergic interneuron 1,234,WT,12wk
+117,2062,GABAergic interneuron 2,66,WT,12wk
+118,2062,GABAergic interneuron 3,19,WT,12wk
+119,2062,Granule cell,5696,WT,12wk
+120,2062,Microglia,18,WT,12wk
+121,2062,Oligodendrocyte,168,WT,12wk
+122,2062,Oligodendrocyte progenitor cell,18,WT,12wk
+123,2062,Pericyte,27,WT,12wk
+124,2062,Purkinje cell,39,WT,12wk
+125,2062,Unipolar brush cell,18,WT,12wk
+126,22019,Astrocyte,114,SCA1,12wk
+127,22019,Bergmann glia,159,SCA1,12wk
+128,22019,Deep cerebellar nuclei,14,SCA1,12wk
+129,22019,Endothelial cell,49,SCA1,12wk
+130,22019,GABAergic interneuron 1,247,SCA1,12wk
+131,22019,GABAergic interneuron 2,68,SCA1,12wk
+132,22019,GABAergic interneuron 3,11,SCA1,12wk
+133,22019,Granule cell,5088,SCA1,12wk
+134,22019,Microglia,19,SCA1,12wk
+135,22019,Oligodendrocyte,126,SCA1,12wk
+136,22019,Oligodendrocyte progenitor cell,14,SCA1,12wk
+137,22019,Pericyte,27,SCA1,12wk
+138,22019,Purkinje cell,35,SCA1,12wk
+139,22019,Unipolar brush cell,15,SCA1,12wk
+140,2063,Astrocyte,94,SCA1,12wk
+141,2063,Bergmann glia,146,SCA1,12wk
+142,2063,Deep cerebellar nuclei,15,SCA1,12wk
+143,2063,Endothelial cell,44,SCA1,12wk
+144,2063,GABAergic interneuron 1,216,SCA1,12wk
+145,2063,GABAergic interneuron 2,63,SCA1,12wk
+146,2063,GABAergic interneuron 3,12,SCA1,12wk
+147,2063,Granule cell,4456,SCA1,12wk
+148,2063,Microglia,12,SCA1,12wk
+149,2063,Oligodendrocyte,119,SCA1,12wk
+150,2063,Oligodendrocyte progenitor cell,11,SCA1,12wk
+151,2063,Pericyte,18,SCA1,12wk
+152,2063,Purkinje cell,21,SCA1,12wk
+153,2063,Unipolar brush cell,15,SCA1,12wk
+154,2065,Astrocyte,118,SCA1,12wk
+155,2065,Bergmann glia,200,SCA1,12wk
+156,2065,Deep cerebellar nuclei,11,SCA1,12wk
+157,2065,Endothelial cell,43,SCA1,12wk
+158,2065,GABAergic interneuron 1,312,SCA1,12wk
+159,2065,GABAergic interneuron 2,98,SCA1,12wk
+160,2065,GABAergic interneuron 3,15,SCA1,12wk
+161,2065,Granule cell,6771,SCA1,12wk
+162,2065,Microglia,20,SCA1,12wk
+163,2065,Oligodendrocyte,195,SCA1,12wk
+164,2065,Oligodendrocyte progenitor cell,20,SCA1,12wk
+165,2065,Pericyte,26,SCA1,12wk
+166,2065,Purkinje cell,35,SCA1,12wk
+167,2065,Unipolar brush cell,15,SCA1,12wk
+168,6569,Astrocyte,471,WT,18wk
+169,6569,Bergmann glia,639,WT,18wk
+170,6569,Deep cerebellar nuclei,147,WT,18wk
+171,6569,Endothelial cell,132,WT,18wk
+172,6569,GABAergic interneuron 1,957,WT,18wk
+173,6569,GABAergic interneuron 2,282,WT,18wk
+174,6569,GABAergic interneuron 3,70,WT,18wk
+175,6569,Granule cell,16475,WT,18wk
+176,6569,Microglia,53,WT,18wk
+177,6569,Oligodendrocyte,707,WT,18wk
+178,6569,Oligodendrocyte progenitor cell,64,WT,18wk
+179,6569,Pericyte,89,WT,18wk
+180,6569,Purkinje cell,203,WT,18wk
+181,6569,Unipolar brush cell,43,WT,18wk
+182,65701,Astrocyte,443,WT,18wk
+183,65701,Bergmann glia,513,WT,18wk
+184,65701,Deep cerebellar nuclei,264,WT,18wk
+185,65701,Endothelial cell,169,WT,18wk
+186,65701,GABAergic interneuron 1,742,WT,18wk
+187,65701,GABAergic interneuron 2,180,WT,18wk
+188,65701,GABAergic interneuron 3,45,WT,18wk
+189,65701,Granule cell,11198,WT,18wk
+190,65701,Microglia,43,WT,18wk
+191,65701,Oligodendrocyte,525,WT,18wk
+192,65701,Oligodendrocyte progenitor cell,52,WT,18wk
+193,65701,Pericyte,73,WT,18wk
+194,65701,Purkinje cell,119,WT,18wk
+195,65701,Unipolar brush cell,31,WT,18wk
+196,65702,Astrocyte,497,WT,18wk
+197,65702,Bergmann glia,604,WT,18wk
+198,65702,Deep cerebellar nuclei,255,WT,18wk
+199,65702,Endothelial cell,174,WT,18wk
+200,65702,GABAergic interneuron 1,877,WT,18wk
+201,65702,GABAergic interneuron 2,223,WT,18wk
+202,65702,GABAergic interneuron 3,46,WT,18wk
+203,65702,Granule cell,12265,WT,18wk
+204,65702,Microglia,52,WT,18wk
+205,65702,Oligodendrocyte,576,WT,18wk
+206,65702,Oligodendrocyte progenitor cell,72,WT,18wk
+207,65702,Pericyte,105,WT,18wk
+208,65702,Purkinje cell,139,WT,18wk
+209,65702,Unipolar brush cell,26,WT,18wk
+210,6571,Astrocyte,507,SCA1,18wk
+211,6571,Bergmann glia,566,SCA1,18wk
+212,6571,Deep cerebellar nuclei,33,SCA1,18wk
+213,6571,Endothelial cell,266,SCA1,18wk
+214,6571,GABAergic interneuron 1,720,SCA1,18wk
+215,6571,GABAergic interneuron 2,202,SCA1,18wk
+216,6571,GABAergic interneuron 3,35,SCA1,18wk
+217,6571,Granule cell,15209,SCA1,18wk
+218,6571,Microglia,54,SCA1,18wk
+219,6571,Oligodendrocyte,466,SCA1,18wk
+220,6571,Oligodendrocyte progenitor cell,48,SCA1,18wk
+221,6571,Pericyte,94,SCA1,18wk
+222,6571,Purkinje cell,109,SCA1,18wk
+223,6571,Unipolar brush cell,24,SCA1,18wk
+224,65731,Astrocyte,585,SCA1,18wk
+225,65731,Bergmann glia,591,SCA1,18wk
+226,65731,Deep cerebellar nuclei,75,SCA1,18wk
+227,65731,Endothelial cell,238,SCA1,18wk
+228,65731,GABAergic interneuron 1,1022,SCA1,18wk
+229,65731,GABAergic interneuron 2,274,SCA1,18wk
+230,65731,GABAergic interneuron 3,76,SCA1,18wk
+231,65731,Granule cell,15346,SCA1,18wk
+232,65731,Microglia,72,SCA1,18wk
+233,65731,Oligodendrocyte,620,SCA1,18wk
+234,65731,Oligodendrocyte progenitor cell,45,SCA1,18wk
+235,65731,Pericyte,75,SCA1,18wk
+236,65731,Purkinje cell,148,SCA1,18wk
+237,65731,Unipolar brush cell,47,SCA1,18wk
+238,65732,Astrocyte,701,SCA1,18wk
+239,65732,Bergmann glia,678,SCA1,18wk
+240,65732,Deep cerebellar nuclei,68,SCA1,18wk
+241,65732,Endothelial cell,248,SCA1,18wk
+242,65732,GABAergic interneuron 1,1060,SCA1,18wk
+243,65732,GABAergic interneuron 2,294,SCA1,18wk
+244,65732,GABAergic interneuron 3,58,SCA1,18wk
+245,65732,Granule cell,16538,SCA1,18wk
+246,65732,Microglia,84,SCA1,18wk
+247,65732,Oligodendrocyte,669,SCA1,18wk
+248,65732,Oligodendrocyte progenitor cell,72,SCA1,18wk
+249,65732,Pericyte,105,SCA1,18wk
+250,65732,Purkinje cell,145,SCA1,18wk
+251,65732,Unipolar brush cell,55,SCA1,18wk
+252,1974,Astrocyte,214,WT,24wk
+253,1974,Bergmann glia,231,WT,24wk
+254,1974,Deep cerebellar nuclei,91,WT,24wk
+255,1974,Endothelial cell,71,WT,24wk
+256,1974,GABAergic interneuron 1,378,WT,24wk
+257,1974,GABAergic interneuron 2,109,WT,24wk
+258,1974,GABAergic interneuron 3,27,WT,24wk
+259,1974,Granule cell,10587,WT,24wk
+260,1974,Microglia,36,WT,24wk
+261,1974,Oligodendrocyte,294,WT,24wk
+262,1974,Oligodendrocyte progenitor cell,36,WT,24wk
+263,1974,Pericyte,33,WT,24wk
+264,1974,Purkinje cell,70,WT,24wk
+265,1974,Unipolar brush cell,19,WT,24wk
+266,2020,Astrocyte,160,WT,24wk
+267,2020,Bergmann glia,203,WT,24wk
+268,2020,Deep cerebellar nuclei,38,WT,24wk
+269,2020,Endothelial cell,34,WT,24wk
+270,2020,GABAergic interneuron 1,278,WT,24wk
+271,2020,GABAergic interneuron 2,75,WT,24wk
+272,2020,GABAergic interneuron 3,13,WT,24wk
+273,2020,Granule cell,7682,WT,24wk
+274,2020,Microglia,31,WT,24wk
+275,2020,Oligodendrocyte,205,WT,24wk
+276,2020,Oligodendrocyte progenitor cell,27,WT,24wk
+277,2020,Pericyte,20,WT,24wk
+278,2020,Purkinje cell,30,WT,24wk
+279,2020,Unipolar brush cell,22,WT,24wk
+280,20202,Astrocyte,188,WT,24wk
+281,20202,Bergmann glia,222,WT,24wk
+282,20202,Deep cerebellar nuclei,41,WT,24wk
+283,20202,Endothelial cell,54,WT,24wk
+284,20202,GABAergic interneuron 1,336,WT,24wk
+285,20202,GABAergic interneuron 2,97,WT,24wk
+286,20202,GABAergic interneuron 3,21,WT,24wk
+287,20202,Granule cell,8661,WT,24wk
+288,20202,Microglia,29,WT,24wk
+289,20202,Oligodendrocyte,254,WT,24wk
+290,20202,Oligodendrocyte progenitor cell,23,WT,24wk
+291,20202,Pericyte,25,WT,24wk
+292,20202,Purkinje cell,45,WT,24wk
+293,20202,Unipolar brush cell,17,WT,24wk
+294,1589,Astrocyte,144,SCA1,24wk
+295,1589,Bergmann glia,174,SCA1,24wk
+296,1589,Deep cerebellar nuclei,26,SCA1,24wk
+297,1589,Endothelial cell,42,SCA1,24wk
+298,1589,GABAergic interneuron 1,233,SCA1,24wk
+299,1589,GABAergic interneuron 2,66,SCA1,24wk
+300,1589,GABAergic interneuron 3,16,SCA1,24wk
+301,1589,Granule cell,5201,SCA1,24wk
+302,1589,Microglia,19,SCA1,24wk
+303,1589,Oligodendrocyte,180,SCA1,24wk
+304,1589,Oligodendrocyte progenitor cell,20,SCA1,24wk
+305,1589,Pericyte,28,SCA1,24wk
+306,1589,Purkinje cell,51,SCA1,24wk
+307,1589,Unipolar brush cell,16,SCA1,24wk
+308,2021,Astrocyte,201,SCA1,24wk
+309,2021,Bergmann glia,183,SCA1,24wk
+310,2021,Deep cerebellar nuclei,103,SCA1,24wk
+311,2021,Endothelial cell,51,SCA1,24wk
+312,2021,GABAergic interneuron 1,283,SCA1,24wk
+313,2021,GABAergic interneuron 2,90,SCA1,24wk
+314,2021,GABAergic interneuron 3,14,SCA1,24wk
+315,2021,Granule cell,7089,SCA1,24wk
+316,2021,Microglia,29,SCA1,24wk
+317,2021,Oligodendrocyte,208,SCA1,24wk
+318,2021,Oligodendrocyte progenitor cell,22,SCA1,24wk
+319,2021,Pericyte,26,SCA1,24wk
+320,2021,Purkinje cell,35,SCA1,24wk
+321,2021,Unipolar brush cell,15,SCA1,24wk
+322,20212,Astrocyte,130,SCA1,24wk
+323,20212,Bergmann glia,151,SCA1,24wk
+324,20212,Deep cerebellar nuclei,76,SCA1,24wk
+325,20212,Endothelial cell,46,SCA1,24wk
+326,20212,GABAergic interneuron 1,171,SCA1,24wk
+327,20212,GABAergic interneuron 2,56,SCA1,24wk
+328,20212,GABAergic interneuron 3,12,SCA1,24wk
+329,20212,Granule cell,5960,SCA1,24wk
+330,20212,Microglia,30,SCA1,24wk
+331,20212,Oligodendrocyte,175,SCA1,24wk
+332,20212,Oligodendrocyte progenitor cell,22,SCA1,24wk
+333,20212,Pericyte,17,SCA1,24wk
+334,20212,Purkinje cell,28,SCA1,24wk
+335,20212,Unipolar brush cell,12,SCA1,24wk
+336,5812,Astrocyte,200,WT,30wk
+337,5812,Bergmann glia,233,WT,30wk
+338,5812,Deep cerebellar nuclei,21,WT,30wk
+339,5812,Endothelial cell,74,WT,30wk
+340,5812,GABAergic interneuron 1,311,WT,30wk
+341,5812,GABAergic interneuron 2,120,WT,30wk
+342,5812,GABAergic interneuron 3,17,WT,30wk
+343,5812,Granule cell,7208,WT,30wk
+344,5812,Microglia,34,WT,30wk
+345,5812,Oligodendrocyte,241,WT,30wk
+346,5812,Oligodendrocyte progenitor cell,30,WT,30wk
+347,5812,Pericyte,24,WT,30wk
+348,5812,Purkinje cell,50,WT,30wk
+349,5812,Unipolar brush cell,9,WT,30wk
+350,58231,Astrocyte,343,SCA1,30wk
+351,58231,Bergmann glia,429,SCA1,30wk
+352,58231,Deep cerebellar nuclei,62,SCA1,30wk
+353,58231,Endothelial cell,140,SCA1,30wk
+354,58231,GABAergic interneuron 1,556,SCA1,30wk
+355,58231,GABAergic interneuron 2,197,SCA1,30wk
+356,58231,GABAergic interneuron 3,48,SCA1,30wk
+357,58231,Granule cell,11381,SCA1,30wk
+358,58231,Microglia,48,SCA1,30wk
+359,58231,Oligodendrocyte,456,SCA1,30wk
+360,58231,Oligodendrocyte progenitor cell,39,SCA1,30wk
+361,58231,Pericyte,35,SCA1,30wk
+362,58231,Purkinje cell,83,SCA1,30wk
+363,58231,Unipolar brush cell,34,SCA1,30wk
+364,58232,Astrocyte,251,WT,30wk
+365,58232,Bergmann glia,323,WT,30wk
+366,58232,Deep cerebellar nuclei,14,WT,30wk
+367,58232,Endothelial cell,116,WT,30wk
+368,58232,GABAergic interneuron 1,477,WT,30wk
+369,58232,GABAergic interneuron 2,128,WT,30wk
+370,58232,GABAergic interneuron 3,35,WT,30wk
+371,58232,Granule cell,10561,WT,30wk
+372,58232,Microglia,30,WT,30wk
+373,58232,Oligodendrocyte,279,WT,30wk
+374,58232,Oligodendrocyte progenitor cell,22,WT,30wk
+375,58232,Pericyte,41,WT,30wk
+376,58232,Purkinje cell,85,WT,30wk
+377,58232,Unipolar brush cell,5,WT,30wk
+378,5822,Astrocyte,237,WT,30wk
+379,5822,Bergmann glia,304,WT,30wk
+380,5822,Deep cerebellar nuclei,18,WT,30wk
+381,5822,Endothelial cell,113,WT,30wk
+382,5822,GABAergic interneuron 1,372,WT,30wk
+383,5822,GABAergic interneuron 2,137,WT,30wk
+384,5822,GABAergic interneuron 3,30,WT,30wk
+385,5822,Granule cell,8998,WT,30wk
+386,5822,Microglia,32,WT,30wk
+387,5822,Oligodendrocyte,286,WT,30wk
+388,5822,Oligodendrocyte progenitor cell,22,WT,30wk
+389,5822,Pericyte,41,WT,30wk
+390,5822,Purkinje cell,68,WT,30wk
+391,5822,Unipolar brush cell,12,WT,30wk
+392,58241,Astrocyte,316,SCA1,30wk
+393,58241,Bergmann glia,376,SCA1,30wk
+394,58241,Deep cerebellar nuclei,33,SCA1,30wk
+395,58241,Endothelial cell,138,SCA1,30wk
+396,58241,GABAergic interneuron 1,603,SCA1,30wk
+397,58241,GABAergic interneuron 2,190,SCA1,30wk
+398,58241,GABAergic interneuron 3,39,SCA1,30wk
+399,58241,Granule cell,11095,SCA1,30wk
+400,58241,Microglia,35,SCA1,30wk
+401,58241,Oligodendrocyte,349,SCA1,30wk
+402,58241,Oligodendrocyte progenitor cell,47,SCA1,30wk
+403,58241,Pericyte,32,SCA1,30wk
+404,58241,Purkinje cell,78,SCA1,30wk
+405,58241,Unipolar brush cell,22,SCA1,30wk
+406,58242,Astrocyte,272,SCA1,30wk
+407,58242,Bergmann glia,352,SCA1,30wk
+408,58242,Deep cerebellar nuclei,29,SCA1,30wk
+409,58242,Endothelial cell,141,SCA1,30wk
+410,58242,GABAergic interneuron 1,492,SCA1,30wk
+411,58242,GABAergic interneuron 2,134,SCA1,30wk
+412,58242,GABAergic interneuron 3,37,SCA1,30wk
+413,58242,Granule cell,9034,SCA1,30wk
+414,58242,Microglia,41,SCA1,30wk
+415,58242,Oligodendrocyte,275,SCA1,30wk
+416,58242,Oligodendrocyte progenitor cell,22,SCA1,30wk
+417,58242,Pericyte,42,SCA1,30wk
+418,58242,Purkinje cell,67,SCA1,30wk
+419,58242,Unipolar brush cell,20,SCA1,30wk
