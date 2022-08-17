@@ -12,5 +12,5 @@
 in `adata.obs`, all metadata per cell is there. Labels of interest include column names:
 - *cell type*: `ctype_ubcupdate`
 - *genotype*: `genotype_crct`
-- *timepoint*: `timepoint`
+- *timepoint and genotype*: `genotime_crct`
 - *pseudotime*: **#todo**: rerun pseudotime to get continuous, smooth label via graph laplacian

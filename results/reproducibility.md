@@ -15,3 +15,4 @@
 | Fig 4c | inference viz with heatmap | `~/notebooks/.ipynb` | 
 | Fig 4d | validation of inference | `~/notebooks./.ipynb` |
 | Fig 4e | unclear | `~/notebooks./.ipynb` |
+
