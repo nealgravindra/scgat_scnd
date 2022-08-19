@@ -2,7 +2,7 @@
 import sys
 sys.path.append('/home/ngr4/project/scnd/scripts/')
 import model as scgatmodels
-# import train as scgattrainer #todo: put trainer in seperate file
+import train as scgattrain
 import glob
 
 
@@ -22,44 +22,60 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 if __name__ == '__main__':
-    #todo: run experiments with only changing label and trial number
     
     # grab params
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', type=str)
-    parser.add_argument('--exp', type=str)
+    parser.add_argument('--target', type=str, help="one of y_genotype_crct or y_genotime_crct")
     parser.add_argument('--trial', type=int)
 
     args = parser.parse_args()
 
-    dataset = args.dataset
-    exp = args.exp
+    target = args.target
     trial = args.trial
     
-    # exp format: model_task_dataset
-    exp = '{}_{}'.format(dataset, exp)
+    ####
+    # exp name
+    ####
+    exp = 'scgatscndv2'
+    model_savepath = '/home/ngr4/scatch60/scnd_model_zoo'
+    ####
 
     # load data
-    if dataset=='hbec':
-        data = scgatutils.load_datapkl('/home/ngr4/project/scgat/data/processed/hbec_scv2.pkl')
-    elif dataset=='rvcse':
-        data = scgatutils.load_datapkl('/home/ngr4/project/scgat/data/processed/rvcse_ycondition.pkl')
-    elif dataset=='pseq':
-        data = scgatutils.load_datapkl('/home/ngr4/project/scgat/data/processed/cwperturb_scv2.pkl')
-    else:
-        print('{} dataset not pre-processed. do sc.AnnData --> datapkl first.'.format(dataset))
-        print('... exiting.')
-        exit()
-    
-    # init model
-    model = scgatmodelsdev.scGAT(data['pg_data']['train'].x.shape[1], data['pg_data']['train'].y.unique().shape[0])
+    slim_pkl = '/home/ngr4/project/scnd/data/processed/mouse_220808_model_data_slim.pkl'
 
-
-    # get mini batches
-    cluster_loader_dict = scgatdata.do_clustergcn(data['pg_data'])
+    # load data
+    tic = time.time()
+    with open(slim_pkl, 'rb') as f:
+        data = pickle.load(f)
+        f.close()
+    print('data loaded in {:.0f}-s'.format(time.time() - tic))
+    print('keys:', data.keys())
+    print('')
     
-    # train and evaluate
-    results_df = train(cluster_loader_dict, model,
-                       n_epochs=10000,
-                       model_savepath='/home/ngr4/project/scgat/model_zoo/',
-                       result_file='/home/ngr4/project/scgat/results/scgat_v3.csv')
+    trainer = scgattrainer.trainer(
+        data['pg_data'],
+        data['metadata'],
+        target,
+        exp=exp,
+        trial=trial,
+        n_epochs=5000,
+        min_nb_epochs=500,
+        lr=0.001,
+        weight_decay=5e-4,
+        batch_size=32,
+        patience=100,
+        model_savepath=model_savepath,
+        result_file='/home/ngr4/project/results/scgat_labelcrct.csv')
+    trainer.fit()
+    trainer.test()
+    
+    # save trainer
+    filename = 'trainer_{}_{}_n{}.pkl'.format(exp, target, trial)
+    filename = os.path.join(model_savepath, filename)
+    with open(filename, 'wb') as f:
+        pickle.dump(trainer, f, protocol=pickle.HIGHEST_PROTOCOL)
+        f.close() 
+        
+    print('\n\nDONE with exp:{}\ttarget:{}\ttrial:{}'.format(exp, target, trial))
+    print('  trainer dumped in {}'.format(filename))
+    print('  ... EXITING.')

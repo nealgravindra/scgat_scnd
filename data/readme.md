@@ -6,6 +6,7 @@
 
 - corrected genotype label metadata (`genotype_crct`)
 - updated UBC cell type to have labels for 2 cell sub-types (`ctype_ubcupdate`)
+- used an updated version of scgat based on insights from You et al. 2021, see [here](https://arxiv.org/pdf/2011.08843.pdf)
 
 ### labels 
 

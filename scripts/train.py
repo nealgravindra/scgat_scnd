@@ -2,7 +2,6 @@
 import sys
 sys.path.append('/home/ngr4/project/scnd/scripts/')
 import model as scgatmodels
-# import train as scgattrainer #todo: put trainer in seperate file
 import glob
 
 
@@ -20,6 +19,8 @@ import argparse
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
+from torch_geometric.data import ClusterData, ClusterLoader
 
 class timer(): 
     def __init__(self):
@@ -60,7 +61,7 @@ class trainer(object):
                  min_nb_epochs=500,
                  lr=0.001,
                  weight_decay=5e-4,
-                 batch_size=32,
+                 batch_size=32, # pretty much ignored, or represents roughly the number of sub-graphs
                  patience=100,
                  model_savepath='/home/ngr4/scatch60/scnd_model_zoo',
                  result_file='/home/ngr4/project/results/scgat_labelcrct.csv'):
@@ -88,12 +89,26 @@ class trainer(object):
         
         # initialize data
         ## modify y label
-        y_train = torch.tensor(metadata.loc[pg_data['train'].y, target_colname].to_numpy(dtype=np.float32))
-        y_val = torch.tensor(metadata.loc[pg_data['val'].y, target_colname].to_numpy(dtype=np.float32))
-        y_test = torch.tensor(metadata.loc[pg_data['test'].y, target_colname].to_numpy(dtype=np.float32))
-        #todo: modify pg_data objects with new label 
-        #todo: add minibatchers per set as dataloader_train etc.
+        self.pg_data['train'].target = torch.tensor(metadata.loc[pg_data['train'].y, target_colname].to_numpy(dtype=np.float32))
+        self.pg_data['val'].target = torch.tensor(metadata.loc[pg_data['val'].y, target_colname].to_numpy(dtype=np.float32))
+        self.pg_data['test'].target = torch.tensor(metadata.loc[pg_data['test'].y, target_colname].to_numpy(dtype=np.float32))
+        self.train_idx = {i:k for i, k in enumerate(self.pg_data['train'].y)}
+        self.val_idx = {i:k for i, k in enumerate(self.pg_data['val'].y)}
+        self.test_idx = {i:k for i, k in enumerate(self.pg_data['test'].y)}
+        del self.pg_data['train'].y, self.pg_data['val'].y, self.pg_data['test'].y
+        self.pg_data['train'].idx = torch.arange(self.pg_data['train'].x.shape[0])
+        self.pg_data['val'].idx = torch.arange(self.pg_data['val'].x.shape[0])
+        self.pg_data['test'].idx = torch.arange(self.pg_data['test'].x.shape[0])
         
+#         self.pg_data['train'].y = np.array(pg_data['train'].y)
+#         self.pg_data['val'].y = np.array(pg_data['val'].y)
+#         self.pg_data['test'].y = np.array(pg_data['test'].y)
+        
+        # minibatcher
+        self.dataloader_train = self.minibatcher(pg_data['train'], batch_size=batch_size)
+        self.dataloader_val = self.minibatcher(pg_data['val'], batch_size=batch_size)    
+        self.dataloader_test = self.minibatcher(pg_data['test'], batch_size=batch_size)
+                
         # model
         self.n_features = pg_data['train'].x.shape[1]
         self.n_class = y_train.unique().shape[0]
@@ -102,7 +117,8 @@ class trainer(object):
         self.optimizer = torch.optim.Adam(
             self.model.parameters(),
             lr=lr,
-            weight_decay=weight_decay) #todo: switch to adam and add LR scheduler
+            weight_decay=weight_decay) 
+        self.scheduler = torch.optim.ReduceLROnPlateau(self.optimizer, 'min')
 
         # log 
         self.timer = timer()
@@ -119,6 +135,12 @@ class trainer(object):
             'acc': [],
             'acc_val': [],
         }
+        
+    def minibatcher(self, d, batch_size=None):
+        if batch_size is None:
+            batch_size = int((np.sqrt(d.x.shape[0]))/32) # default to 32
+        cd = ClusterData(d,num_parts=int(np.sqrt(d.x.shape[0])))
+        return ClusterLoader(cd,batch_size=batch_size, shuffle=True)
         
     def clear_modelpkls(self, best_epoch):
         files = glob.glob(os.path.join(self.model_savepath, '*-{}.pkl'.format(self.exp)))
@@ -139,11 +161,11 @@ class trainer(object):
             output = self.model(batch.x)
 
             self.optimizer.zero_grad()
-            loss = F.nll_loss(output, batch.y)
+            loss = F.nll_loss(output, batch.target)
             loss.backward()
             self.optimizer.step()
             mb_loss.append(loss.item())
-            mb_metric.append(accuracy(output, batch.y).item())
+            mb_metric.append(accuracy(output, batch.target).item())
         
         # update loggers
         self.log['loss'].append(np.mean(mb_loss))
@@ -157,9 +179,9 @@ class trainer(object):
         for i, batch in enumerate(self.dataloader_val):
             batch = batch.to(self.device)
             output = self.model(batch.x)
-            loss_val = F.nll_loss(output, batch.y)
+            loss_val = F.nll_loss(output, batch.target)
             mb_loss.append(loss_val.item())
-            mb_metric.append(accuracy(output, batch.y).item())
+            mb_metric.append(accuracy(output, batch.target).item())
         
         # update loggers
         self.log['loss_val'].append(np.mean(mb_loss))
@@ -177,6 +199,7 @@ class trainer(object):
             self.timer.start()
             self.train()
             loss_val = self.val()
+            self.scheduler.step(loss_val)
             print('epoch:{}\tloss:{:.4e}\tacc:{:.4e}\tloss_val:{:.4e}\tacc_val:{:.4e}\tin:{:.2f}-s'.format(
                 epoch,
                 self.log['loss'][-1],
@@ -236,10 +259,10 @@ class trainer(object):
             batch = batch.to(self.device)
             output = self.model(batch)
             if i==0:
-                self.y_test = batch.y
+                self.y_test = batch.target
                 self.yhat_test = output
             else:
-                self.y_test = torch.cat((self.y_test, batch.y), dim=0)
+                self.y_test = torch.cat((self.y_test, batch.target), dim=0)
                 self.yhat_test = torch.cat((self.yhat_test, output), dim=0)
         loss_test = F.nll_loss(self.yhat_test, self.y_test).item()
         acc_test = accuracy(self.yhat_test, self.y_test).item()
