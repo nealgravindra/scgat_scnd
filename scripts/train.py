@@ -73,15 +73,14 @@ class trainer(object):
           metadata (pd.DataFrame): with label information
           target_colname (str): specify colname in metadata that should be used for prediction
         """
-        self.pg_data = pg_data # may not want to store this
         self.metadata = metadata
         self.target_colname = target_colname
-        self.exp = '{}_n{}'.format(exp, trial)
+        self.exp = '{}_{}_n{}'.format(exp, target_colname, trial)
         self.n_epochs = n_epochs
         self.min_nb_epochs = min_nb_epochs
         self.patience = patience
         self.model_savepath = model_savepath
-        self.result_file = result_path
+        self.result_file = result_file
         
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         if self.device.type=='cuda':
@@ -89,16 +88,16 @@ class trainer(object):
         
         # initialize data
         ## modify y label
-        self.pg_data['train'].target = torch.tensor(metadata.loc[pg_data['train'].y, target_colname].to_numpy(dtype=np.float32))
-        self.pg_data['val'].target = torch.tensor(metadata.loc[pg_data['val'].y, target_colname].to_numpy(dtype=np.float32))
-        self.pg_data['test'].target = torch.tensor(metadata.loc[pg_data['test'].y, target_colname].to_numpy(dtype=np.float32))
-        self.train_idx = {i:k for i, k in enumerate(self.pg_data['train'].y)}
-        self.val_idx = {i:k for i, k in enumerate(self.pg_data['val'].y)}
-        self.test_idx = {i:k for i, k in enumerate(self.pg_data['test'].y)}
-        del self.pg_data['train'].y, self.pg_data['val'].y, self.pg_data['test'].y
-        self.pg_data['train'].idx = torch.arange(self.pg_data['train'].x.shape[0])
-        self.pg_data['val'].idx = torch.arange(self.pg_data['val'].x.shape[0])
-        self.pg_data['test'].idx = torch.arange(self.pg_data['test'].x.shape[0])
+        pg_data['train'].target = torch.LongTensor(metadata.loc[pg_data['train'].y, target_colname].to_numpy(dtype=np.float32))
+        pg_data['val'].target = torch.LongTensor(metadata.loc[pg_data['val'].y, target_colname].to_numpy(dtype=np.float32))
+        pg_data['test'].target = torch.LongTensor(metadata.loc[pg_data['test'].y, target_colname].to_numpy(dtype=np.float32))
+        self.train_idx = {i:k for i, k in enumerate(pg_data['train'].y)}
+        self.val_idx = {i:k for i, k in enumerate(pg_data['val'].y)}
+        self.test_idx = {i:k for i, k in enumerate(pg_data['test'].y)}
+        del pg_data['train'].y, pg_data['val'].y, pg_data['test'].y
+        pg_data['train'].idx = torch.arange(pg_data['train'].x.shape[0])
+        pg_data['val'].idx = torch.arange(pg_data['val'].x.shape[0])
+        pg_data['test'].idx = torch.arange(pg_data['test'].x.shape[0])
         
 #         self.pg_data['train'].y = np.array(pg_data['train'].y)
 #         self.pg_data['val'].y = np.array(pg_data['val'].y)
@@ -111,14 +110,14 @@ class trainer(object):
                 
         # model
         self.n_features = pg_data['train'].x.shape[1]
-        self.n_class = y_train.unique().shape[0]
+        self.n_class = pg_data['train'].target.unique().shape[0]
         self.model = scgatmodels.scGAT_customforward(self.n_features, self.n_class)
-        self.model = self.model.to(device)
-        self.optimizer = torch.optim.Adam(
+        self.model = self.model.to(self.device)
+        self.optimizer = torch.optim.Adagrad(
             self.model.parameters(),
             lr=lr,
             weight_decay=weight_decay) 
-        self.scheduler = torch.optim.ReduceLROnPlateau(self.optimizer, 'min')
+        self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'min')
 
         # log 
         self.timer = timer()
@@ -135,6 +134,8 @@ class trainer(object):
             'acc': [],
             'acc_val': [],
         }
+
+        del pg_data # for safe measure
         
     def minibatcher(self, d, batch_size=None):
         if batch_size is None:
@@ -158,7 +159,7 @@ class trainer(object):
         self.model.train()
         for i, batch in enumerate(self.dataloader_train):
             batch = batch.to(self.device)
-            output = self.model(batch.x)
+            output = self.model(batch.x, batch.edge_index)
 
             self.optimizer.zero_grad()
             loss = F.nll_loss(output, batch.target)
@@ -178,7 +179,7 @@ class trainer(object):
         self.model.eval()
         for i, batch in enumerate(self.dataloader_val):
             batch = batch.to(self.device)
-            output = self.model(batch.x)
+            output = self.model(batch.x, batch.edge_index)
             loss_val = F.nll_loss(output, batch.target)
             mb_loss.append(loss_val.item())
             mb_metric.append(accuracy(output, batch.target).item())
@@ -217,55 +218,66 @@ class trainer(object):
                 torch.save(self.model.state_dict(), 
                            os.path.join(self.model_savepath, '{}-{}.pkl'.format(epoch, self.exp)))
                 bad_counter = 0
-            else:
+            elif epoch+1 > self.min_nb_epochs:
                 bad_counter += 1
 
-            if bad_counter == patience:
+            if bad_counter == self.patience:
                 self.clear_modelpkls(best_epoch)
-                self.model = self.model.load_state_dict(
-                    torch.load(os.path.join(self.model_savepath, '{}-{}.pkl'.format(best_epoch, exp)), 
-                                         map_location=self.device)) # torch.device('cpu') if loading full batch
+                self.model.load_state_dict(
+                    torch.load(os.path.join(self.model_savepath, '{}-{}.pkl'.format(best_epoch, self.exp)), 
+                    map_location=self.device.type)) # torch.device('cpu') if loading full batch
                 break
-            elif epoch==(n_epochs-1):
+            elif epoch==(self.n_epochs-1):
                 self.clear_modelpkls(best_epoch)
-                torch.save(self.model.state_dict(), os.path.join(self.model_savepath, '{}-{}.pkl'.format(epoch,exp))) # also save last
+                torch.save(self.model.state_dict(), os.path.join(self.model_savepath, '{}-{}.pkl'.format(epoch,self.exp))) # also save last
 #                 self.model = self.model.to(torch.device('cpu'))
-                print('*NOTE*: {}-epoch patience not reached after {} epochs'.format(patience, n_epochs))
+                print('*NOTE*: {}-epoch patience not reached after {} epochs'.format(self.patience, self.n_epochs))
 
         print('\nOptimization finished!\tBest epoch: {}\tMax epoch: {}'.format(best_epoch, epoch))
-        print('  exp: {}'.format(exp))
-        print('  training time elapsed: {}-h:m:s\n'.format(str(datetime.timedelta(seconds=timer.sum()))))
+        print('  exp: {}'.format(self.exp))
+        print('  training time elapsed: {}-h:m:s\n'.format(str(datetime.timedelta(seconds=self.timer.sum()))))
         
         # save training details
         if self.result_file is not None:
+            df = {}
+            for k in self.log.keys():
+                if isinstance(self.log[k], dict):
+                    for kk in self.log[k].keys():
+                        df['{}_{}'.format(k, kk)] = self.log[k][kk]
+                else:
+                    df[k] = self.log[k]
             if os.path.exists(self.result_file):
-                pd.DataFrame(self.log).to_csv(self.result_file, mode='a', header=False)
+                pd.DataFrame(df).to_csv(self.result_file, mode='a', header=False)
             else: 
-                pd.DataFrame(self.log).to_csv(self.result_file)
+                pd.DataFrame(df).to_csv(self.result_file)
 
-        return self.log
         
-    def test(self):
+    def test(self, device=torch.device('cpu')):
         '''
 
         NOTE: 
           - run after fit(). Model is on cpu
         '''
+        if device.type == 'cuda':
+            torch.cuda.empty_cache()
         # test 
-#         device = torch.device('cpu')
-#         self.model = self.model.to(self.device) # make sure model on gpu
+        self.model = self.model.to(device) # make sure model on gpu
         self.model.eval()
+        y_test = torch.empty(len(self.test_idx.keys()), )
+        yhat_test = torch.empty(len(self.test_idx.keys()), self.n_class)
+        count = 0
         for i, batch in enumerate(self.dataloader_test):
-            batch = batch.to(self.device)
-            output = self.model(batch)
-            if i==0:
-                self.y_test = batch.target
-                self.yhat_test = output
-            else:
-                self.y_test = torch.cat((self.y_test, batch.target), dim=0)
-                self.yhat_test = torch.cat((self.yhat_test, output), dim=0)
-        loss_test = F.nll_loss(self.yhat_test, self.y_test).item()
-        acc_test = accuracy(self.yhat_test, self.y_test).item()
+            n = batch.x.shape[0]
+            batch = batch.to(device)
+            output = self.model(batch.x, batch.edge_index)
+            y, yhat = batch.target, output.detach()
+            del batch, output
+            yhat_test[count:count+n, :] = yhat
+            y_test[count:count+n] = y
+            del yhat, y
+            count += n
+        loss_test = F.nll_loss(yhat_test, y_test).item()
+        acc_test = accuracy(yhat_test, y_test).item()
         self.log['loss_test'] = loss_test
         self.log['acc_test'] = acc_test
 

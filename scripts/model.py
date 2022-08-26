@@ -1053,7 +1053,26 @@ class scGAT_customforward(nn.Module):
         x = self.gat3(x, edge_index)
         return F.log_softmax(x, dim=1)
     
-    
+class scGAT_scnd(nn.Module):
+    # forward for Captum
+    def __init__(self, dim_in, dim_out):
+        super().__init__()
+        self.gat1 = GATConv(dim_in, out_channels=8, 
+                            heads=8, concat=True, 
+                            negative_slope=0.2, 
+                            dropout=0.4, bias=True)
+        self.gat2 = GATConv(8*8, out_channels=dim_out, 
+                            heads=8, concat=False, 
+                            negative_slope=0.2, 
+                            dropout=0.4, bias=True)
+        
+    def forward(self, x_in, edge_index):
+        x = self.gat1(x_in, edge_index)
+        x = F.elu(x) 
+        x = self.gat2(x, edge_index)
+        return F.log_softmax(x, dim=1)    
+
+
 # mtl.v3 (uses scGAT.v3 and TabNet_noBN)
 class scGAT_MTL(nn.Module):
     # v3
