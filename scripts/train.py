@@ -60,6 +60,7 @@ class trainer(object):
                  n_epochs=5000,
                  min_nb_epochs=500,
                  lr=0.001,
+                 scheduler=True,
                  weight_decay=5e-4,
                  batch_size=32, # pretty much ignored, or represents roughly the number of sub-graphs
                  patience=100,
@@ -117,7 +118,10 @@ class trainer(object):
             self.model.parameters(),
             lr=lr,
             weight_decay=weight_decay) 
-        self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'min')
+        if scheduler:
+            self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'min')
+        else:
+            self.scheduler = None
 
         # log 
         self.timer = timer()
@@ -200,7 +204,8 @@ class trainer(object):
             self.timer.start()
             self.train()
             loss_val = self.val()
-            self.scheduler.step(loss_val)
+            if self.sheduler is not None:
+                self.scheduler.step(loss_val)
             print('epoch:{}\tloss:{:.4e}\tacc:{:.4e}\tloss_val:{:.4e}\tacc_val:{:.4e}\tin:{:.2f}-s'.format(
                 epoch,
                 self.log['loss'][-1],
